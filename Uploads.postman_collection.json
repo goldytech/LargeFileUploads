@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "1901fe59-6632-4fa8-8572-fc2f73f28582",
+		"name": "Uploads",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "699985"
+	},
+	"item": [
+		{
+			"name": "File Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/afzal/Downloads/WebStorm-2021.1.dmg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5211/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5211",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File Upload Dapr",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/afzal/Downloads/WebStorm-2021.1.dmg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3501/v1.0/invoke/upload-api/method/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3501",
+					"path": [
+						"v1.0",
+						"invoke",
+						"upload-api",
+						"method",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
