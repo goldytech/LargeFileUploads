@@ -42,3 +42,33 @@ To exit the pprof prompt, use the following command:
     quit or exit
 
 
+#### Interpreting the cum and flat values
+In the top command output in the pprof tool, the "flat" and "cum" columns provide information about the amount of time that was spent in each function.
+
+The "flat" column shows the total amount of time that was spent in a function itself, without considering any time spent in its callees. This includes both the time spent executing the function's own code, as well as any time spent waiting for other resources (such as I/O or locks).
+
+The "cum" column, on the other hand, shows the total amount of time that was spent in a function and all of its callees. This gives a more comprehensive view of how much time is being spent in a particular function, since it takes into account both the function's own code and any time spent in its subroutines.
+
+Here's an example to illustrate the difference between the "flat" and "cum" columns:
+
+Suppose we have two functions, `foo()` and `bar()`, where `foo()` calls `bar()`. Suppose also that foo() takes 10ms to execute, and bar() takes 5ms to execute. In this case, the top command output might look something like this:
+
+
+````
+Showing nodes accounting for 15ms, 100% of 15ms total
+Dropped 1 nodes (cum <= 0.07ms)
+Showing top 2 nodes out of 2
+flat  flat%   sum%        cum   cum%
+10ms 66.67% 66.67%       15ms 100.00%  foo()
+5ms 33.33% 100.00%       5ms  33.33%  bar()
+````
+
+
+
+In this example, the "flat" column for foo() shows 10ms, which is the total time spent executing foo() itself (without considering any time spent in bar()). The "cum" column for foo() shows 15ms, which is the total time spent in foo() and bar() combined.
+
+Similarly, the "flat" column for bar() shows 5ms, which is the total time spent executing bar() itself (without considering any time spent in other functions). The "cum" column for bar() shows 5ms, which is the same as the "flat" column since bar() does not call any other functions in this example.
+
+In general, the "cum" column is a more useful metric for identifying performance bottlenecks, since it gives a more comprehensive view of how much time is being spent in a particular function and its subroutines. However, the "flat" column can also be useful for identifying functions that have a high overhead, such as functions that spend a lot of time waiting for locks or performing I/O.
+
+
